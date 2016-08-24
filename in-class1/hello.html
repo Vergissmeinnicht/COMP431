@@ -1,32 +1,60 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>
-			Page Title
-		</title>
-	</head>
+<head>
+<title>Jinghao's page</title>
 
-	<body>
-		<h1>This is in-class exercise 1</h1>
-		<p>My name: Jinghao Lin</p>
+<style>
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    text-align: center;
+}
 
-		<p></p>
+.flex-container > * {
+    padding: 15px;
+    -webkit-flex: 1 100%;
+    flex: 1 100%;
+}
 
-		<p>Here is a photo of mine</p>
+img {
+ width: 10%
+}
 
-		<img src="./selfie.png" alt="Unlucky:(" style="width:128px;height:512px;">
+
+</style>
+
+</head>
+<body>
+
+<div class="flex-container">
+
+<h1>This is in-class exercise 1</h1>
+<p>My name is Jinghao Lin</p>
 
 
-		<p>A story of my last trip.</p>
+</div>
 
-		<p><a href="https://www.facebook.com/jinghao.lin.31">Visit my Facebook homepage</a></p>
+<img src="./selfie.png" alt="Unlucky:(" style="width:20%;height:100%;
+  margin-top: 30px;
+  margin-right: 40%;
+  margin-bottom: 30px;
+  margin-left: 40%;">
+<div class="flex-container">
 
-		<form action="action_page.php">
-		  Please write some comments on me:<br>
-		  <textarea name="firstname" rows="20" cols="40"></textarea>
-		  <br><br>
-		  <input type="submit" value="Submit">
-		</form>
+<p>A story of my last trip.</p>
 
-	</body>
+<p><a href="https://www.facebook.com/jinghao.lin.31">Visit my Facebook homepage</a></p>
+
+<form action="action_page.php">
+  Write some comments on me:<br>
+  <textarea name="firstname" rows="10" cols="50"></textarea>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+</div>
+
+</body>
 </html>
