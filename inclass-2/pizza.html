@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pizza Order</title>
+        <script>
+            function checkIsPhone(c){
+                if(c.length!=12) return false;
+                for (i=0;i<3;i++){
+                   if (!(c.charCodeAt(i)>=48)&&(c.charCodeAt(i)<=57)){
+                       return false;
+                   }
+                }
+                for (i=4;i<7;i++){
+                   if (!(c.charCodeAt(i)>=48)&&(c.charCodeAt(i)<=57)){
+                       return false;
+                   }
+                }
+                for (i=8;i<1;i++){
+                   if (!(c.charCodeAt(i)>=48)&&(c.charCodeAt(i)<=57)){
+                       return false;
+                   }
+                }
+                if(c.charAt(3)!="-"||c.charAt(3)!="-") return false;
+                return true;
+            }
+            function Validation(){
+                var phone =document.form.phone.value;
+                if (!checkIsNumber(phone)) alert("Phone format wrong!");
+                
+                if (!(document.form.psize[0].checked||document.form.psize[1].checked||document.form.psize[2].checked)){
+                    alert("Choose a size for your pizza!");
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <font size="6">Pizza Guys Order Form</font><br>
+        <img src="./pizza.jpg" alt="Picture not found :(" style="width:40%;height:40">
+        <form action="http://localhost:8080/HW1/formProcessor" name="form" onsubmit="Validation()">
+            Name:<br>
+            <input type="text" name="name" size="50" required>
+            <br><br>
+
+            Address: #### Street Name...<br>
+            <input type="text" name="addr" size="100" required>
+            <br><br>
+
+            Phone Number: 123-123-1234<br>
+            <input type="text" name="phone" size="20" >
+            <br><br>
+
+            Pizza size:<br>
+            <input type="radio" name="psize" value="3">Large
+            <input type="radio" name="psize" value="2">Medium
+            <input type="radio" name="psize" value="1">Small
+            <br><br>
+
+            Pizza Toppings:<br>
+            <input type="checkbox" name="topping1" value="Sausage"> Sausage<br>
+            <input type="checkbox" name="topping2" value="Pepperoni"> Pepperoni<br>
+            <input type="checkbox" name="topping3" value="Olives"> Olives<br>
+            <input type="checkbox" name="topping4" value="Anchovies"> Anchovies<br>
+            <input type="checkbox" name="topping5" value="Onions"> Onions<br>
+            <br><br>
+
+            <input type="submit" value="Place Order">
+            <input type="reset" value="Clear">
+            
+        </form>
+    </body>
+</html>
+
+
