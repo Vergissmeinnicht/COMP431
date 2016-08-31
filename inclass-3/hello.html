@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Hello HTML!</title>
+    <meta name="Author" content="Jinghao Lin">
+    <meta charset="utf-8">
+    <script>
+      var count=function(){
+        alert("the page will redirect when the counter reaches zero");
+      }
+      window.onload=setTimeout(count,5000);
+      function clearText(){
+        document.getElementById("textA").value=document.getElementById("textA").defaultValue;
+      }
+    </script>
+</head>
+
+<body onload="start(15)">
+
+<table border="1">
+  <tr><td>Athenian</td><td>Owl</td></tr>
+  <tr><td colspan="2"><img src="http://explore.rice.edu/uploadedImages/Explore/Welcome_to_Rice/riceacademicseal1.jpg"></td></tr>
+</table>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<ul>
+  <li><a href="http://www.rice.edu">Rice</a></li>
+  <li><a href="http://www.chron.com">Houston Chronicle</a></li>
+  <li><a href="http://www.twitter.com">Twitter</a></li>
+  <li><a href="http://www.twosigma.com">TwoSigma</a></li>
+</ul>
+
+<textarea id="textA" rows="10" cols="50">
+
+ --- Enter your message here --- 
+
+
+</textarea>
+<input type="button" value="clear" onclick="clearText()">
+<br><br>
+<span id="indicator"></span>
+<br>
+
+<button onclick="myStopFunction()">Stop time</button>
+<button onclick="myResumeFunction()">Resume time</button>
+
+<script>
+var flag = 1;
+function start(t){
+var myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+    if(flag===1){
+    document.getElementById("indicator").innerHTML = t;
+    t--;}
+    else clearInterval(myVar);
+    if(t===0){
+    clearInterval(myVar);
+    window.location.href='hello.html';
+    }
+}}
+
+function myStopFunction() {
+    flag = 0;
+}
+
+function myResumeFunction() {
+    flag = 1;
+    var b = document.getElementById("indicator").innerHTML
+    start(b);
+}
+</script>
