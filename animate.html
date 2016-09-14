@@ -1,0 +1,129 @@
+<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Promise animate</title>
+    <style>
+        .ball {
+            width:40px;
+            height:40px;
+            border-radius:20px;
+        }
+        .ball1 {
+            background: red;
+        }
+        .ball2 {
+            background: blue;
+        }
+        .ball3 {
+            background: yellow;
+        }
+        .ball4 {
+            background: black;
+        }
+        .ball5 {
+            background: pink;
+        }
+        .ball6 {
+            background: green;
+        }
+    </style>
+    <script type="text/javascript" src="./node_modules/bluebird/js/browser/bluebird.js"></script>
+</head>
+<body>
+    <div class="ball ball1" style="margin-left:0;"></div>
+    <div class="ball ball2" style="margin-left:0;"></div>
+    <div class="ball ball3" style="margin-left:0;"></div>
+
+    <div class="ball ball4" style="margin-left:0;"></div>
+    <div class="ball ball5" style="margin-left:0;"></div>
+    <div class="ball ball6" style="margin-left:0;"></div>
+
+    <script>
+        var ball1 = document.querySelector('.ball1');
+        var ball2 = document.querySelector('.ball2');
+        var ball3 = document.querySelector('.ball3');
+
+        var ball4 = document.querySelector('.ball4');
+        var ball5 = document.querySelector('.ball5');
+        var ball6 = document.querySelector('.ball6');
+        var Promise = window.Promise;
+
+        promiseAnimate(ball1, 100)
+            .then(function() {
+                return promiseAnimate(ball2, 200);
+            })
+            .then(function() {
+                return promiseAnimate(ball3, 300);
+            })
+            .then(function() {
+                return promiseAnimate(ball3, 150);
+            })
+            .then(function() {
+                return promiseAnimate(ball2, 150);
+            })
+            .then(function() {
+                return promiseAnimate(ball1, 150);
+            });
+
+        function promiseAnimate(ball, distance){
+            return new Promise(function(resolve, reject){
+                _animate();
+
+                function _animate(){
+                    setTimeout(function(){
+                        var marginLeft = parseInt(ball.style.marginLeft, 10);
+                        if(marginLeft === distance){
+                            resolve();
+                        }else {
+                            if(marginLeft < distance){
+                                marginLeft++;
+                            }else {
+                                marginLeft--;
+                            }
+
+                            ball.style.marginLeft = marginLeft + "px";
+
+                            _animate();
+                        }
+                    }, 13);
+                }
+            });
+        }    
+
+        animate(ball4, 100, function(){
+            animate(ball5, 200, function(){
+                animate(ball6, 300, function(){
+                    animate(ball6, 150, function(){
+                        animate(ball5, 150, function(){
+                            animate(ball4, 150, function(){
+                                //alert("done");
+                            });
+                        });
+                    });
+                });
+            });
+        });
+
+        function animate(ball, distance, cb){
+            setTimeout(function(){
+                var marginLeft = parseInt(ball.style.marginLeft, 10);
+
+                if(marginLeft === distance){
+                    cb && cb();
+                }else {
+                    if(marginLeft < distance){
+                        marginLeft++;
+                    }else {
+                        marginLeft--;
+                    }
+
+                    ball.style.marginLeft = marginLeft + "px";
+
+                    animate(ball, distance, cb);
+                }
+            }, 13);
+        }
+    </script>
+</body>
+</html>
