@@ -73,46 +73,26 @@
     }
 
     function getLargest(url) {
-        var map = function countWordsSafe(url) {
             return fetch(url)
               .then(
                 function(response){
-                  if(response.status !== 200){
-                    console.log('Problem! Status code: ' + response.status);
-                    return {};
-                  }
                   //Examine the text in the response
                   return response.json().then(
                     function(data){
-                      var pair = {};
+                      var maxid = "";
+                      var max = -1;
                       var data_articles = data.articles;
                       for(var obj in data_articles){
-                        pair[data_articles[obj]._id] = data_articles[obj].text.split(" ").length;
+                        var count = data_articles[obj].text.split(" ").length
+                        if(count > max){
+                          max = count
+                          maxid = data_articles[obj]._id
+                        }
                       }
-                      return pair;
+                      return maxid + "";
                     }
-                  ).catch(function(error){
-                    console.log('Request Failed', error);
-                    return {};
-                  });
-                }
-              );
-        };
-        if(map == null){
-          return "Bad url";
-        }
-        var maxlen = -1;
-        var maxid = "";
-        for(var id in map){
-          if(map[id] > maxlen){
-            maxlen = map[id];
-            maxid = id;
-          }
-        }
-        console.log(map);
-        console.log(maxlen);
-        console.log(maxid);
-        return maxid;
+                  )
+        })
     }
 
     exports.inclass = {
